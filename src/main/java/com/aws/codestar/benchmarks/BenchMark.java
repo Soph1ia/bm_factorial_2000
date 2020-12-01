@@ -22,6 +22,7 @@ public class BenchMark {
     }
 
     @Benchmark
+    @Fork(0)
     public void factorial_2000(Blackhole bh) {
         BigInteger result = factorial(new BigInteger("2000"));
         bh.consume(result);
@@ -40,7 +41,6 @@ public class BenchMark {
     public void main() throws RunnerException {
         Options opt = new OptionsBuilder()
                 .include(BenchMark.class.getSimpleName())
-                .forks(1)
                 .build();
         new Runner(opt).run();
 
